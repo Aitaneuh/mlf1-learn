@@ -1,0 +1,13 @@
+{
+  "name": "mlf1-learn",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-hosted, progressive learning site for BFH Machine Learning Foundations 1",
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/server.js",
+    "validate": "node scripts/validate-content.mjs"
+  }
+}

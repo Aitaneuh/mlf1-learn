@@ -1,0 +1,147 @@
+{
+  "title": "MLF1 Learn",
+  "course": "BTI1041 Machine Learning Foundations 1 (BFH, 2026–2027)",
+  "updates": [
+    { "date": "2026-11-23", "text": "Site launched — covers course weeks 1 to 10." }
+  ],
+  "units": [
+    {
+      "id": "u0", "title": "Start here: the big picture", "weeks": "Week 1",
+      "summary": "How this site works, what machine learning is, and your first model (words as vectors).",
+      "items": [
+        { "id": "u0-welcome", "type": "lesson", "title": "How this site works", "file": "lessons/u0/01-welcome.md", "minutes": 8 },
+        { "id": "u0-big-picture", "type": "lesson", "title": "What is machine learning (and data engineering)?", "file": "lessons/u0/02-big-picture.md", "minutes": 20, "source": "Slides week 1" },
+        { "id": "u0-word2vec", "type": "lesson", "title": "Your first model: words as vectors", "file": "lessons/u0/03-word-vectors.md", "minutes": 25, "source": "Notebook week 1 · Semantic Spaces" },
+        { "id": "u0-exam", "type": "exam", "title": "Unit 0 check", "file": "exams/u0.md", "minutes": 8, "pass": 70 }
+      ]
+    },
+    {
+      "id": "u1", "title": "Python survival kit", "weeks": "Prerequisite",
+      "summary": "Just enough Python to read and write every notebook of the course: variables, lists, loops, functions, NumPy.",
+      "items": [
+        { "id": "u1-basics", "type": "lesson", "title": "Variables, numbers, strings and print", "file": "lessons/u1/01-basics.md", "minutes": 20 },
+        { "id": "u1-collections", "type": "lesson", "title": "Lists, tuples, dicts and zip", "file": "lessons/u1/02-collections.md", "minutes": 25 },
+        { "id": "u1-loops", "type": "lesson", "title": "Loops, comprehensions, if and functions", "file": "lessons/u1/03-loops-functions.md", "minutes": 30 },
+        { "id": "u1-numpy", "type": "lesson", "title": "NumPy arrays: maths on whole columns", "file": "lessons/u1/04-numpy.md", "minutes": 30 },
+        { "id": "u1-exam", "type": "exam", "title": "Unit 1 check", "file": "exams/u1.md", "minutes": 10, "pass": 70 }
+      ]
+    },
+    {
+      "id": "u2", "title": "Where your code runs", "weeks": "Week 2",
+      "summary": "Environments, containers, Jupyter kernels and hidden state — and a calm method to debug a broken notebook.",
+      "items": [
+        { "id": "u2-environments", "type": "lesson", "title": "Development environments: why “it works on my machine”", "file": "lessons/u2/01-environments.md", "minutes": 20, "source": "Slides week 2 · Development Environments" },
+        { "id": "u2-kernel", "type": "lesson", "title": "Inside a Jupyter notebook: the kernel and its state", "file": "lessons/u2/02-kernel.md", "minutes": 25, "source": "Notebook week 2 · Inside a Jupyter Notebook" },
+        { "id": "u2-debugging", "type": "lesson", "title": "Debugging a broken notebook", "file": "lessons/u2/03-debugging.md", "minutes": 30, "source": "Notebook week 2 · The Broken Notebook" },
+        { "id": "u2-exam", "type": "exam", "title": "Unit 2 check", "file": "exams/u2.md", "minutes": 10, "pass": 70 }
+      ]
+    },
+    {
+      "id": "u3", "title": "From data to predictions", "weeks": "Week 3",
+      "summary": "Observations, features, targets, encoding, linear regression, regression vs classification, supervised vs unsupervised.",
+      "items": [
+        { "id": "u3-features", "type": "lesson", "title": "Observations, features and targets", "file": "lessons/u3/01-features.md", "minutes": 25, "source": "Slides week 3 · From Data to Predictions" },
+        { "id": "u3-encoding", "type": "lesson", "title": "Turning the real world into numbers", "file": "lessons/u3/02-encoding.md", "minutes": 25, "source": "Slides week 3 · From Data to Predictions" },
+        { "id": "u3-linreg", "type": "lesson", "title": "Linear regression and the kinds of learning", "file": "lessons/u3/03-linear-regression.md", "minutes": 30, "source": "Slides week 3 · From Data to Predictions" },
+        { "id": "u3-exam", "type": "exam", "title": "Unit 3 check", "file": "exams/u3.md", "minutes": 10, "pass": 70 }
+      ]
+    },
+    {
+      "id": "u4", "title": "How models learn", "weeks": "Weeks 3–4",
+      "summary": "Errors and loss functions, derivatives, gradient descent, learning rate, epochs — then the full fuel-consumption notebook.",
+      "items": [
+        { "id": "u4-loss", "type": "lesson", "title": "Measuring mistakes: error, MSE, MAE, RMSE", "file": "lessons/u4/01-loss.md", "minutes": 25, "source": "Slides week 3 · How Models Learn" },
+        { "id": "u4-gradient", "type": "lesson", "title": "Gradient descent: walking downhill", "file": "lessons/u4/02-gradient-descent.md", "minutes": 35, "source": "Slides week 3 · How Models Learn" },
+        { "id": "u4-training", "type": "lesson", "title": "Training loops, epochs and unseen data", "file": "lessons/u4/03-training.md", "minutes": 30, "source": "Slides weeks 3–4" },
+        { "id": "u4-fuel", "type": "lesson", "title": "Hands-on: learning fuel consumption", "file": "lessons/u4/04-fuel.md", "minutes": 40, "source": "Notebook week 3 · Fuel Consumption" },
+        { "id": "u4-exam", "type": "exam", "title": "Unit 4 check", "file": "exams/u4.md", "minutes": 12, "pass": 70 },
+        { "id": "u4-project", "type": "project", "title": "Project 1 · Fuel model with an intercept, from scratch", "file": "projects/p1-fuel.md", "minutes": 60, "optional": true }
+      ]
+    },
+    {
+      "id": "u5", "title": "Working with data in pandas", "weeks": "Week 4",
+      "summary": "DataFrames, selecting and filtering, and loading CSV files correctly (separators, encodings, dates).",
+      "items": [
+        { "id": "u5-dataframes", "type": "lesson", "title": "DataFrames: tables you can program", "file": "lessons/u5/01-dataframes.md", "minutes": 35, "source": "Notebook week 4 · Pandas Loading" },
+        { "id": "u5-loading", "type": "lesson", "title": "Loading data without silent errors", "file": "lessons/u5/02-loading.md", "minutes": 30, "source": "Notebook week 4 · Pandas Loading" },
+        { "id": "u5-exam", "type": "exam", "title": "Unit 5 check", "file": "exams/u5.md", "minutes": 8, "pass": 70 }
+      ]
+    },
+    {
+      "id": "u6", "title": "Classification", "weeks": "Week 4",
+      "summary": "Logistic regression, sigmoid and softmax, log loss, regularisation, decision trees and random forests, the scikit-learn workflow.",
+      "items": [
+        { "id": "u6-logistic", "type": "lesson", "title": "Logistic regression: from score to probability", "file": "lessons/u6/01-logistic.md", "minutes": 35, "source": "Slides week 4" },
+        { "id": "u6-multiclass", "type": "lesson", "title": "Three classes: softmax, cross-entropy, regularisation", "file": "lessons/u6/02-multiclass.md", "minutes": 30, "source": "Slides week 4" },
+        { "id": "u6-iris", "type": "lesson", "title": "Hands-on: the scikit-learn workflow on Iris", "file": "lessons/u6/03-iris.md", "minutes": 45, "source": "Notebook week 4 · Iris Logistic Regression" },
+        { "id": "u6-trees", "type": "lesson", "title": "Decision trees, random forests and hyperparameters", "file": "lessons/u6/04-trees.md", "minutes": 30, "source": "Slides week 4" },
+        { "id": "u6-exam", "type": "exam", "title": "Unit 6 check", "file": "exams/u6.md", "minutes": 12, "pass": 70 },
+        { "id": "u6-project", "type": "project", "title": "Project 2 · Wine detective: compare four classifiers", "file": "projects/p2-wine.md", "minutes": 60, "optional": true }
+      ]
+    },
+    {
+      "id": "u7", "title": "Probability, Naive Bayes and fair evaluation", "weeks": "Week 5",
+      "summary": "Conditional probability, Bayes' theorem, Naive Bayes, precision/recall/F1 and cross-validation on Pendigits.",
+      "items": [
+        { "id": "u7-probability", "type": "lesson", "title": "Conditional probability and Bayes' theorem", "file": "lessons/u7/01-probability.md", "minutes": 35, "source": "Slides week 5" },
+        { "id": "u7-naive-bayes", "type": "lesson", "title": "Naive Bayes: classifying by counting", "file": "lessons/u7/02-naive-bayes.md", "minutes": 35, "source": "Slides week 5" },
+        { "id": "u7-metrics", "type": "lesson", "title": "Precision, recall, F1 and the confusion matrix", "file": "lessons/u7/03-metrics.md", "minutes": 30, "source": "Slides week 5" },
+        { "id": "u7-pendigits", "type": "lesson", "title": "Hands-on: cross-validation on Pendigits", "file": "lessons/u7/04-pendigits.md", "minutes": 45, "source": "Notebook week 5 · Naive Bayes Pendigits" },
+        { "id": "u7-exam", "type": "exam", "title": "Unit 7 check", "file": "exams/u7.md", "minutes": 12, "pass": 70 },
+        { "id": "u7-project", "type": "project", "title": "Project 3 · A text classifier from scratch", "file": "projects/p3-text-nb.md", "minutes": 75, "optional": true }
+      ]
+    },
+    {
+      "id": "u8", "title": "Learning with and without labels", "weeks": "Week 6",
+      "summary": "K-means clustering vs K-nearest neighbours on MNIST, cluster metrics, and topic discovery in text.",
+      "items": [
+        { "id": "u8-kmeans", "type": "lesson", "title": "K-means: finding groups without labels", "file": "lessons/u8/01-kmeans.md", "minutes": 30, "source": "Slides week 6" },
+        { "id": "u8-knn", "type": "lesson", "title": "KNN: predicting by asking the neighbours", "file": "lessons/u8/02-knn.md", "minutes": 25, "source": "Slides week 6" },
+        { "id": "u8-mnist", "type": "lesson", "title": "Hands-on: MNIST clustering vs KNN", "file": "lessons/u8/03-mnist.md", "minutes": 45, "source": "Notebook week 6 · MNIST Clustering vs KNN" },
+        { "id": "u8-topics", "type": "lesson", "title": "Topics in text: TF-IDF and NMF", "file": "lessons/u8/04-topics.md", "minutes": 35, "source": "Notebook week 6 · 20 Newsgroups Topics" },
+        { "id": "u8-exam", "type": "exam", "title": "Unit 8 check", "file": "exams/u8.md", "minutes": 12, "pass": 70 },
+        { "id": "u8-project", "type": "project", "title": "Project 4 · K-means and KNN from scratch", "file": "projects/p4-kmeans.md", "minutes": 75, "optional": true }
+      ]
+    },
+    {
+      "id": "u9", "title": "The ML workflow and model evaluation", "weeks": "Weeks 7–8",
+      "summary": "The five workflow steps, choosing metrics and thresholds, train/validation/test, leakage, over- and underfitting, error analysis.",
+      "items": [
+        { "id": "u9-workflow", "type": "lesson", "title": "The machine learning workflow", "file": "lessons/u9/01-workflow.md", "minutes": 20, "source": "Slides week 7 · ML Workflow" },
+        { "id": "u9-metrics", "type": "lesson", "title": "Choosing the right metric and threshold", "file": "lessons/u9/02-choosing-metrics.md", "minutes": 25, "source": "Slides week 8 · Model Evaluation" },
+        { "id": "u9-generalisation", "type": "lesson", "title": "Validation, leakage, under- and overfitting", "file": "lessons/u9/03-generalisation.md", "minutes": 35, "source": "Slides week 8 · Model Evaluation" },
+        { "id": "u9-errors", "type": "lesson", "title": "Looking at mistakes: qualitative evaluation", "file": "lessons/u9/04-error-analysis.md", "minutes": 25, "source": "Slides week 8 · Model Evaluation" },
+        { "id": "u9-exam", "type": "exam", "title": "Unit 9 check", "file": "exams/u9.md", "minutes": 12, "pass": 70 },
+        { "id": "u9-project", "type": "project", "title": "Project 5 · A medical screening model, done properly", "file": "projects/p5-screening.md", "minutes": 75, "optional": true }
+      ]
+    },
+    {
+      "id": "u10", "title": "Evaluating applications and experiments", "weeks": "Weeks 8–9",
+      "summary": "Beyond accuracy: evaluation levels, usability and SUS, A/B tests, biases, survey design and evidence-based decisions.",
+      "items": [
+        { "id": "u10-levels", "type": "lesson", "title": "The best model is not always the best application", "file": "lessons/u10/01-levels.md", "minutes": 20, "source": "Slides week 8 · Application Evaluation" },
+        { "id": "u10-usability", "type": "lesson", "title": "Usability testing and the SUS questionnaire", "file": "lessons/u10/02-usability.md", "minutes": 25, "source": "Slides week 8 · Application Evaluation" },
+        { "id": "u10-ab", "type": "lesson", "title": "Designing a fair A/B experiment", "file": "lessons/u10/03-ab-testing.md", "minutes": 25, "source": "Slides week 8 + A/B test tutorial" },
+        { "id": "u10-decisions", "type": "lesson", "title": "From results to decisions", "file": "lessons/u10/04-decisions.md", "minutes": 45, "source": "Slides + notebook week 9" },
+        { "id": "u10-exam", "type": "exam", "title": "Unit 10 check", "file": "exams/u10.md", "minutes": 12, "pass": 70 },
+        { "id": "u10-project", "type": "project", "title": "Project 6 · Decide with data: a full A/B analysis", "file": "projects/p6-ab.md", "minutes": 60, "optional": true }
+      ]
+    },
+    {
+      "id": "u11", "title": "Data annotation", "weeks": "Week 10",
+      "summary": "Where labels come from: label schemes, guidelines, and measuring agreement between annotators.",
+      "items": [
+        { "id": "u11-annotation", "type": "lesson", "title": "Annotating data and measuring agreement", "file": "lessons/u11/01-annotation.md", "minutes": 30, "source": "Notebook week 10 · Image Annotation" },
+        { "id": "u11-exam", "type": "exam", "title": "Unit 11 check", "file": "exams/u11.md", "minutes": 8, "pass": 70 }
+      ]
+    },
+    {
+      "id": "u12", "title": "Final review", "weeks": "Exam prep",
+      "summary": "One page with the whole course, then a cumulative exam mixing every unit.",
+      "items": [
+        { "id": "u12-review", "type": "lesson", "title": "The whole course on one page", "file": "lessons/u12/01-review.md", "minutes": 25 },
+        { "id": "u12-final", "type": "exam", "title": "Final exam (cumulative)", "file": "exams/final.md", "minutes": 30, "pass": 75 }
+      ]
+    }
+  ]
+}

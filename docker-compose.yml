@@ -1,0 +1,18 @@
+services:
+  mlf1-learn:
+    build: .
+    image: mlf1-learn:latest
+    container_name: mlf1-learn
+    restart: unless-stopped
+    ports:
+      - "${MLF1_PORT:-8090}:3000"
+    environment:
+      # Set to "false" after you created your account to close registrations.
+      - ALLOW_SIGNUP=${ALLOW_SIGNUP:-true}
+      # Set to "true" if you serve the site over HTTPS (reverse proxy).
+      - COOKIE_SECURE=${COOKIE_SECURE:-false}
+    volumes:
+      - mlf1-data:/data
+
+volumes:
+  mlf1-data:
