@@ -42,7 +42,7 @@ So the result of a notebook depends **not only on the cells, but on which cells 
 Deleting a cell removes the **code** from the file, but not the **variable** from the kernel's memory:
 
 :::viz name=kernel preset=secret
-Run cell 1, then delete it with 🗑, then run the print cell: it still works! Now **Restart kernel** and run it again → `NameError`.
+Run cell 1, then delete it, then run the print cell: it still works! Now **Restart kernel** and run it again → `NameError`.
 :::
 
 This is how notebooks “work” for the author and fail for everybody else: the author's kernel still remembers a variable whose defining cell was deleted or edited long ago.
@@ -57,7 +57,7 @@ Click the cells in the order 1 → 3 → 2: it works. Now press **Restart & Run 
 A notebook is reproducible when it runs **from a fresh kernel, top to bottom** without errors: *Kernel → Restart & Run All*. “It worked when I clicked the cells” is weak evidence.
 :::
 
-Now do it for real. The cells below run in **this page's actual kernel** (see the kernel bar at the top).
+Now do it for real. The cells below run in **this page's actual kernel** (see the python status line at the top).
 
 :::exercise id=order title="Fix the cell order"
 --- task
@@ -82,7 +82,7 @@ print(f"Final price: CHF {final_price:.2f}")
 print(final_price)
 :::
 
-That cell has no definition of `final_price` — it works only because the exercise above ran earlier **in the same kernel**. Press **⟲ Restart kernel** in the bar at the top, then run this cell again: `NameError`.
+That cell has no definition of `final_price` — it works only because the exercise above ran earlier **in the same kernel**. Press **restart** in the python status line at the top, then run this cell again: `NameError`.
 
 ## Where packages fit in
 

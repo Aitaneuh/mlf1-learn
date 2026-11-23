@@ -202,4 +202,4 @@ b ≈ the fuel used by a trip of length 0 — physically impossible to be much a
 The curvature of the loss along w is roughly $2 \cdot \text{mean}(x^2)$. Gradient descent is stable only if the learning rate is below about 2 / curvature. Here that bound is ≈ 0.025, so 0.02 still converges (with oscillation) and 0.03 explodes. The notebook's three trips are all long (mean x² ≈ 94), so its bound is ≈ 0.011 and 0.02 already diverges. Rescaling x (e.g. dividing by 10) would allow a larger rate — representation affects optimisation.
 :::
 
-Mark the project complete when all steps pass. 🎉 You just implemented the core of machine learning by hand.
+Mark the project complete when all steps pass. You just implemented the core of machine learning by hand.

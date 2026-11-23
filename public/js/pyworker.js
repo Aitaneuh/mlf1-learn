@@ -71,11 +71,13 @@ def _figs(outs):
         outs.append({'type': 'image', 'png': base64.b64encode(buf.getvalue()).decode()})
     plt.close('all')
 
-def _trace(e, fname):
+def _trace(e, fname, src=''):
     lines = []
+    srclines = src.split(chr(10))
     for fr in traceback.extract_tb(e.__traceback__):
         if fr.filename == fname:
-            lines.append({'lineno': fr.lineno, 'line': fr.line or ''})
+            text = fr.line or (srclines[fr.lineno - 1] if 0 < (fr.lineno or 0) <= len(srclines) else '')
+            lines.append({'lineno': fr.lineno, 'line': text})
     return lines
 
 def _run(code, key, mode='cell', captured=''):
@@ -104,7 +106,7 @@ def _run(code, key, mode='cell', captured=''):
     except SyntaxError as e:
         err = {'ename': type(e).__name__, 'evalue': str(e.msg), 'trace': [{'lineno': e.lineno or 0, 'line': (e.text or '').rstrip()}]}
     except BaseException as e:
-        err = {'ename': type(e).__name__, 'evalue': str(e), 'trace': _trace(e, fname)}
+        err = {'ename': type(e).__name__, 'evalue': str(e), 'trace': _trace(e, fname, code)}
     finally:
         sys.stdout, sys.stderr = old
     try:

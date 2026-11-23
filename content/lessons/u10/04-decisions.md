@@ -226,11 +226,11 @@ Change the weights (e.g. usability 80 %) and the decision may flip — the decis
 
 | Statement | Supported? |
 |---|---|
-| Most participants **in our experiment** preferred tool X | ✅ supported (it's what we observed) |
-| Most **BFH students** prefer tool X | ❌ not established (12 first-semester DE students ≠ all students) |
-| Tool Y got a higher average SUS **in our experiment** | ✅ supported |
-| Tool Y is **objectively** easier to use | ❌ not established (small sample, simple tasks, learning effects) |
-| We know the best tool for **every situation** | ❌ not established (complex diagrams? collaboration? semester-long use?) |
+| Most participants **in our experiment** preferred tool X | supported (it's what we observed) |
+| Most **BFH students** prefer tool X | not established (12 first-semester DE students ≠ all students) |
+| Tool Y got a higher average SUS **in our experiment** | supported |
+| Tool Y is **objectively** easier to use | not established (small sample, simple tasks, learning effects) |
+| We know the best tool for **every situation** | not established (complex diagrams? collaboration? semester-long use?) |
 
 **Generalisation** is limited by *who* participated and *which tasks* were tested. Initial usability (beginners) ≠ usability after practice (experts).
 

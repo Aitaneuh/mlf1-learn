@@ -2,13 +2,13 @@ Welcome! This site turns the **Machine Learning Foundations 1** course into a st
 
 ## How a unit is built
 
-Each unit matches one or two course weeks (see the purple *Week* badge) and always has the same rhythm:
+Each unit matches one or two course weeks (shown next to each unit on the roadmap) and always has the same rhythm:
 
 | Step | What you do | Why |
 |---|---|---|
-| 📘 **Lessons** | Read short explanations, play with graphics, answer quick quiz questions, solve Python exercises | Understand one idea at a time |
-| 🎯 **Exam** | 8–15 questions, pass mark 70 % | Proves you are ready — it **unlocks the next unit** |
-| 🛠️ **Project** | A bigger practical task with several steps | Turns knowledge into skill (optional, but strongly recommended) |
+| **Lessons** | Read short explanations, play with graphics, answer quick quiz questions, solve Python exercises | Understand one idea at a time |
+| **Exam** | 8–15 questions, pass mark 70 % | Proves you are ready — it **unlocks the next unit** |
+| **Project** | A bigger practical task with several steps | Turns knowledge into skill (optional, but strongly recommended) |
 
 :::key
 Units build on each other. If you were lost in the course since week 2, **do not skip** — the problem is usually one missing building block (often Python itself, or what a “kernel” is). This path fills those gaps in order.
@@ -18,7 +18,7 @@ Units build on each other. If you were lost in the course since week 2, **do not
 
 You do not need to install anything. Code cells on this site run a real Python (with NumPy, pandas, matplotlib and scikit-learn) **inside your browser**. The first time, it needs ~10–20 seconds to download.
 
-Try it: press **▶ Run** (or `Shift+Enter` inside the editor).
+Try it: press **Run** (or `Shift+Enter` inside the editor).
 
 :::code
 print("Hello, machine learning!")
@@ -30,11 +30,11 @@ Two things to notice — they are exactly like a Jupyter notebook:
 1. `print(...)` writes text to the output.
 2. If the **last line** of a cell is a value (here `2 + 3`), the cell shows that value automatically.
 
-Now change the code (for example, `print("Hello", 2 * 21)`) and run it again. You cannot break anything: **↺ Original** restores the code.
+Now change the code (for example, `print("Hello", 2 * 21)`) and run it again. You cannot break anything: **Original** restores the code.
 
 ## Exercises check your answer
 
-An **exercise** has a task, an editor with some starter code and a **✓ Check answer** button. A hidden checker tests your result and tells you what is wrong. If you are stuck, use **💡 Hint**; as a last resort, **Show solution**.
+An **exercise** has a task, an editor with some starter code and a **Check** button. A hidden checker tests your result and tells you what is wrong. If you are stuck, use **Hint**; as a last resort, **Solution**.
 
 :::exercise id=first title="Your very first exercise"
 --- task
@@ -51,13 +51,13 @@ In Python, `=` stores a value in a variable: `name = value`.
 answer = 42
 :::
 
-## The kernel bar
+## The kernel status line
 
-At the top of pages with code you see the **Python kernel** bar. Just like in Jupyter (you will learn this properly in Unit 2):
+At the top of pages with code you see a small **python** status line. Just like in Jupyter (you will learn this properly in Unit 2):
 
 - All code cells **on the same page share their variables** — a variable created in one cell exists in the next.
-- **⟲ Restart kernel** forgets all variables of the page.
-- **■ Stop** force-stops Python if your code runs forever (e.g. an endless loop).
+- **restart** forgets all variables of the page.
+- **stop** force-stops Python if your code runs forever (e.g. an endless loop).
 
 :::code title="Run this after the exercise above — the variable still exists"
 print("answer is", answer)
@@ -67,7 +67,7 @@ print("answer is", answer)
 
 Everything is stored on your server: completed lessons, exam scores, even the code you typed in exercises. You can continue on another device by logging in.
 
-At the bottom of each lesson you find **Mark as complete**. In strict mode (the default), the next step unlocks only once the previous one is done. If you need to jump to the current course week, turn on **free navigation** in ⚙ settings.
+At the bottom of each lesson you find **Mark complete**. In strict mode (the default), the next step unlocks only once the previous one is done. If you need to jump to the current course week, turn on **free navigation** in settings (gear icon).
 
 :::quiz
 ? What unlocks the next unit?

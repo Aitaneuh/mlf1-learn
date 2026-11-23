@@ -77,7 +77,7 @@ VIZ.kernel = (root, attrs) => {
   const wrap = el('<div class="simnb"><div class="cells"></div><div><div class="simmem"></div><div class="viz-controls" style="margin-top:10px"></div></div></div>');
   root.appendChild(wrap);
   const cellsEl = wrap.querySelector('.cells'), memEl = wrap.querySelector('.simmem'), ctl = wrap.querySelector('.viz-controls');
-  ctl.innerHTML = '<button class="btn small" data-a="restart">⟲ Restart kernel</button><button class="btn small primary" data-a="runall">⏩ Restart &amp; Run All</button>';
+  ctl.innerHTML = '<button class="btn small" data-a="restart">Restart kernel</button><button class="btn small primary" data-a="runall">Restart &amp; Run all</button>';
   function runCell(c) {
     counter++; c.count = counter;
     const before = JSON.stringify(mem);
@@ -89,15 +89,15 @@ VIZ.kernel = (root, attrs) => {
     cellsEl.innerHTML = '';
     cells.forEach((c, i) => {
       if (c.deleted) return;
-      const row = el(`<div class="simcell"><div class="prompt">[${c.count ?? ' '}]:</div><div class="src"></div><button class="btn small" title="Run this cell">▶</button></div>`);
+      const row = el(`<div class="simcell"><div class="prompt">[${c.count ?? ' '}]:</div><div class="src"></div><button class="btn small" title="Run this cell" aria-label="Run this cell">run</button></div>`);
       const src = row.querySelector('.src'); src.textContent = c.src;
       if (c.out) { const o = document.createElement('span'); o.className = `simout${c.err ? ' err' : ''}`; o.textContent = c.out; src.appendChild(o); }
       row.querySelector('button').onclick = () => { runCell(c); draw(); };
-      if (c.deletable) { const d = el('<button class="btn small ghost" title="Delete this cell">🗑</button>'); d.onclick = () => { c.deleted = true; draw(); }; row.appendChild(d); }
+      if (c.deletable) { const d = el('<button class="btn small ghost" title="Delete this cell">delete</button>'); d.onclick = () => { c.deleted = true; draw(); }; row.appendChild(d); }
       cellsEl.appendChild(row);
     });
     const keys = Object.keys(mem);
-    memEl.innerHTML = `<h4>🧠 Kernel memory (variables)</h4>${keys.length ? keys.map((k) => `<div class="var${changed && changed.includes(k) ? ' flash' : ''}"><span>${k}</span><span>${typeof mem[k] === 'number' ? +mem[k].toFixed(4) : mem[k]}</span></div>`).join('') : '<div style="color:var(--text-faint)">(empty)</div>'}<h4 style="margin-top:10px">Execution counter: ${counter}</h4>`;
+    memEl.innerHTML = `<h4>Kernel memory</h4>${keys.length ? keys.map((k) => `<div class="var${changed && changed.includes(k) ? ' flash' : ''}"><span>${k}</span><span>${typeof mem[k] === 'number' ? +mem[k].toFixed(4) : mem[k]}</span></div>`).join('') : '<div style="color:var(--text-faint)">(empty)</div>'}<h4 style="margin-top:10px">execution counter: ${counter}</h4>`;
     changed = null;
   }
   ctl.querySelector('[data-a=restart]').onclick = () => { mem = {}; counter = 0; cells.forEach((c) => { c.count = null; c.out = ''; c.err = false; }); draw(); };
@@ -180,7 +180,7 @@ VIZ.gd1d = (root, attrs) => {
     const last = path.slice(-6).map((w, i, arr) => `<tr><td>${path.length - arr.length + i}</td><td>${fmt(w, 4)}</td><td>${fmt(grad(w), 3)}</td><td>${fmt(loss(w), 3)}</td></tr>`).join('');
     const diverged = !Number.isFinite(cur) || Math.abs(cur) > 1e6 || loss(cur) > lmax * 50;
     box.innerHTML = s + readout([['current w', fmt(cur, 4)], ['slope dL/dw', fmt(grad(cur), 3)], ['loss', fmt(loss(cur), 3)], ['update = −lr × slope', fmt(-st.lr * grad(cur), 4)]])
-      + `<div class="viz-note">${diverged ? '💥 <b>Diverging!</b> The learning rate is so large that each step overshoots the minimum by more than it corrects. ' : ''}Green line = the slope (derivative) at the current point. Negative slope → w increases; positive slope → w decreases.</div>`
+      + `<div class="viz-note">${diverged ? '<b>Diverging.</b> The learning rate is so large that each step overshoots the minimum by more than it corrects. ' : ''}Green line = the slope (derivative) at the current point. Negative slope → w increases; positive slope → w decreases.</div>`
       + `<table class="cm-table" style="margin-top:8px"><tr><th>step</th><th>w</th><th>slope</th><th>loss</th></tr>${last}</table>`;
   }
   const step = (n) => { for (let i = 0; i < n; i++) { const w = path[path.length - 1]; if (!Number.isFinite(w) || Math.abs(w) > 1e9) break; path.push(w - st.lr * grad(w)); } draw(); };

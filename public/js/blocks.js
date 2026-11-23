@@ -4,6 +4,7 @@ import { md, mdInline, sections, escapeHtml, highlightCode } from './render.js';
 import { py, explainError } from './py.js';
 import { store, saveDebounced } from './api.js';
 import { VIZ } from './viz.js';
+import { icon } from './icons.js';
 
 const h = (tag, attrs = {}, html = '') => {
   const el = document.createElement(tag);
@@ -76,7 +77,7 @@ function errorBox(err, lineOffsetLabel = '') {
   return h('div', { class: 'error-box' },
     `<span class="ename">${escapeHtml(err.ename)}</span>: ${escapeHtml(err.evalue)}`
     + (tr ? `<pre>${tr}</pre>` : '')
-    + (ex ? `<div class="explain">💡 ${ex}</div>` : ''));
+    + (ex ? `<div class="explain">${icon('info')}<span>${ex}</span></div>` : ''));
 }
 
 // checker messages: plain text, `code` spans only (no markdown emphasis on * or _)
@@ -99,7 +100,7 @@ function mountExercise(slot, block, ctx) {
 
   const box = h('div', { class: 'blk-box exercise', id: block.attrs.id ? `ex-${block.attrs.id}` : null });
   const head = h('div', { class: 'blk-head' },
-    `<span class="badge ex">${block.attrs.kind === 'project' ? 'Step' : 'Exercise'}</span><span class="blk-title">${mdInline(block.attrs.title || '')}</span><span class="blk-status"></span>`);
+    `<span class="badge ex">${block.attrs.kind === 'project' || ctx.project ? 'Step' : 'Exercise'} ${String(ctx.nextNumber ? ctx.nextNumber('exercise') : '').padStart(2, '0')}</span><span class="blk-title">${mdInline(block.attrs.title || '')}</span><span class="blk-status"></span>`);
   const body = h('div', { class: 'blk-body' });
   box.append(head, body);
   if (s.task || s._) {
@@ -116,11 +117,11 @@ function mountExercise(slot, block, ctx) {
   });
 
   const actions = h('div', { class: 'code-actions' });
-  const runBtn = h('button', { class: 'btn', title: 'Run (Shift+Enter)' }, '▶ Run');
-  const checkBtn = hasCheck ? h('button', { class: 'btn primary' }, '✓ Check answer') : null;
-  const hintBtn = hints.length ? h('button', { class: 'btn ghost' }, `💡 Hint (${hints.length})`) : null;
-  const solBtn = s.solution ? h('button', { class: 'btn ghost' }, 'Show solution') : null;
-  const resetBtn = h('button', { class: 'btn ghost small', title: 'Restore the starter code' }, '↺ Reset code');
+  const runBtn = h('button', { class: 'btn', title: 'Run (Shift+Enter)' }, `${icon('play')} Run`);
+  const checkBtn = hasCheck ? h('button', { class: 'btn primary' }, `${icon('check')} Check`) : null;
+  const hintBtn = hints.length ? h('button', { class: 'btn ghost' }, `${icon('hint')} Hint <span class="kbd-hint">${hints.length}</span>`) : null;
+  const solBtn = s.solution ? h('button', { class: 'btn ghost' }, `${icon('eye')} Solution`) : null;
+  const resetBtn = h('button', { class: 'btn ghost small', title: 'Restore the starter code', 'aria-label': 'Reset code' }, `${icon('reset')} Reset`);
   actions.append(runBtn);
   if (checkBtn) actions.append(checkBtn);
   if (hintBtn) actions.append(hintBtn);
@@ -134,7 +135,7 @@ function mountExercise(slot, block, ctx) {
 
   const setDone = (d) => {
     head.querySelector('.blk-status').className = `blk-status ${d ? 'ok' : ''}`;
-    head.querySelector('.blk-status').textContent = d ? '✓ Completed' : '';
+    head.querySelector('.blk-status').innerHTML = d ? `${icon('check')} done` : '';
   };
   setDone(store.isDone(exId));
   if (store.isDone(exId)) req.done();
@@ -143,7 +144,7 @@ function mountExercise(slot, block, ctx) {
     if (py.busy && py.state === 'busy') return;
     runBtn.disabled = true; if (checkBtn) checkBtn.disabled = true;
     feedback.innerHTML = '';
-    outputs.innerHTML = '<div class="out">⏳ Running…</div>';
+    outputs.innerHTML = '<div class="out" style="color:var(--ink-3)">running…</div>';
     const scan = `${s.setup || ''}\n${s.check || ''}`;
     try {
       if (s.setup) {
@@ -163,7 +164,7 @@ function mountExercise(slot, block, ctx) {
       if (!check) return;
       const cr = await py.run(s.check, ctx.ns, { mode: 'check', captured: res.stdout || '' });
       if (cr.ok) {
-        feedback.innerHTML = `<div class="feedback ok">✅ Correct! ${s.success ? mdInline(s.success) : 'Well done.'}</div>`;
+        feedback.innerHTML = `<div class="feedback ok">${icon('check')}<span>Correct. ${s.success ? mdInline(s.success) : ''}</span></div>`;
         store.save(exId, { status: 'done', data: { code: cm.getValue() }, attempt: true });
         setDone(true); req.done();
       } else {
@@ -190,7 +191,7 @@ function mountExercise(slot, block, ctx) {
     highlightCode(hb);
     extra.appendChild(hb);
     hintsShown++;
-    hintBtn.textContent = hintsShown < hints.length ? `💡 Next hint (${hints.length - hintsShown} left)` : '💡 No more hints';
+    hintBtn.innerHTML = hintsShown < hints.length ? `${icon('hint')} Next hint <span class="kbd-hint">${hints.length - hintsShown}</span>` : `${icon('hint')} No more hints`;
     if (hintsShown >= hints.length) hintBtn.disabled = true;
   };
   if (solBtn) solBtn.onclick = () => {
@@ -217,7 +218,7 @@ function mountCode(slot, block, ctx) {
   const s = sections(block.body);
   const src = s.code ?? s._ ?? '';
   const box = h('div', { class: 'blk-box codecell' });
-  const head = h('div', { class: 'blk-head' }, `<span class="badge code">Try it</span><span class="blk-title">${mdInline(block.attrs.title || 'Run this code — then change it and run again')}</span><span class="blk-status mono"></span>`);
+  const head = h('div', { class: 'blk-head' }, `<span class="badge code">Run</span><span class="blk-title">${mdInline(block.attrs.title || 'Run this code — then change it and run again')}</span><span class="blk-status mono"></span>`);
   const body = h('div', { class: 'blk-body' });
   box.append(head, body);
   if (s.task) body.appendChild(h('div', { class: 'task' }, md(s.task)));
@@ -225,7 +226,7 @@ function mountCode(slot, block, ctx) {
   const outputs = h('div', { class: 'outputs' });
   const runIt = async () => {
     btn.disabled = true;
-    outputs.innerHTML = '<div class="out">⏳ Running…</div>';
+    outputs.innerHTML = '<div class="out" style="color:var(--ink-3)">running…</div>';
     try {
       if (s.setup) await py.run(s.setup, ctx.ns, { mode: 'setup' });
       const res = await py.run(cm.getValue(), ctx.ns, { mode: 'cell' });
@@ -237,9 +238,9 @@ function mountCode(slot, block, ctx) {
   };
   cm = makeEditor(body, src, runIt);
   const actions = h('div', { class: 'code-actions' });
-  const btn = h('button', { class: 'btn' }, '▶ Run');
+  const btn = h('button', { class: 'btn' }, `${icon('play')} Run`);
   btn.onclick = runIt;
-  const reset = h('button', { class: 'btn ghost small' }, '↺ Original');
+  const reset = h('button', { class: 'btn ghost small', 'aria-label': 'Restore original code' }, `${icon('reset')} Original`);
   reset.onclick = () => cm.setValue(src);
   actions.append(btn, h('span', { class: 'spacer' }), h('span', { class: 'kbd-hint' }, 'Shift+Enter to run'), reset);
   body.append(actions, outputs);
@@ -376,7 +377,7 @@ function mountQuiz(slot, block, ctx) {
   const finish = () => {
     if (solved.size === qs.length) {
       head.querySelector('.blk-status').className = 'blk-status ok';
-      head.querySelector('.blk-status').textContent = '✓ All correct';
+      head.querySelector('.blk-status').innerHTML = `${icon('check')} all correct`;
       if (!store.isDone(quizId)) store.save(quizId, { status: 'done' });
       req.done();
     } else {
@@ -396,7 +397,7 @@ function mountQuiz(slot, block, ctx) {
       tries++;
       const ok = st.grade();
       fb.className = `q-feedback ${ok ? 'ok' : 'bad'}`;
-      fb.innerHTML = ok ? '✓ Correct!' : (tries >= 2 ? '✗ Not quite — read the explanation below.' : '✗ Not quite — try again.');
+      fb.innerHTML = ok ? 'correct' : (tries >= 2 ? 'not quite — see the explanation' : 'not quite — try again');
       if (ok || tries >= 2) {
         const extraTxt = !ok && st.reveal() ? `<p>${st.reveal()}</p>` : '';
         if (!ok && st.markMissed) st.markMissed();
@@ -408,17 +409,17 @@ function mountQuiz(slot, block, ctx) {
   });
   if (store.isDone(quizId)) {
     head.querySelector('.blk-status').className = 'blk-status ok';
-    head.querySelector('.blk-status').textContent = '✓ Done before';
+    head.querySelector('.blk-status').innerHTML = `${icon('check')} done`;
     req.done();
   } else finish();
   slot.replaceWith(box);
 }
 
 // ------------------------------------------------------------------ callouts, reveal, viz
-const CALLOUTS = { note: 'ℹ️ Note', tip: '💡 Tip', warn: '⚠️ Watch out', key: '🔑 Key idea', exam: '🎯 Exam focus' };
+const CALLOUTS = { note: ['info', 'Note'], tip: ['hint', 'Tip'], warn: ['alert', 'Watch out'], key: ['key', 'Key idea'], exam: ['target', 'Exam focus'] };
 
 function mountCallout(slot, block) {
-  const el = h('div', { class: `callout ${block.type}` }, `<div class="callout-title">${escapeHtml(block.attrs.title ? `${CALLOUTS[block.type].split(' ')[0]} ${block.attrs.title}` : CALLOUTS[block.type])}</div>${md(block.body)}`);
+  const el = h('div', { class: `callout ${block.type}` }, `<div class="callout-title">${icon(CALLOUTS[block.type][0])}${escapeHtml(block.attrs.title || CALLOUTS[block.type][1])}</div>${md(block.body)}`);
   highlightCode(el);
   slot.replaceWith(el);
 }

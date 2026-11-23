@@ -91,4 +91,4 @@ acc = model.score(X_test, y_test)
 print(acc)
 :::
 
-Ready? The final exam mixes every unit. Pass mark 75 %. Good luck! 🍀
+Ready? The final exam mixes every unit. Pass mark 75 %. Good luck.
